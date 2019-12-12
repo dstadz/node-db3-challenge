@@ -49,3 +49,4 @@ function remove(id) {
   return db('schemes')
     .where({id})
     .del()
+}

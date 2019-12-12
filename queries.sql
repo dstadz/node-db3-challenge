@@ -2,10 +2,7 @@
 
 -- Display the ProductName and CategoryName for all products in the database. Shows 77 records.
 
-select p.ProductName
-,c.CategoryName
-,p.id
-,c.id
+select p.ProductName, c.CategoryName
 from [Product] as p
 join [Category] as c
 on p.CategoryId = c.id
@@ -13,18 +10,17 @@ on p.CategoryId = c.id
 
 -- Display the order Id and shipper CompanyName for all orders placed before August 9 2012. Shows 429 records.
 
-select o.id
-,s.CompanyName
+select o.id, s.CompanyName
 from [Order] as o
-join [Shipper] as s on o.Shipvia = shipper.Id
+join [Shipper] as s on o.Shipvia = s.Id
 where o.OrderDate < '2012-08-09'
 
 
 -- Display the name and quantity of the products ordered in order with Id 10251. Sort by ProductName. Shows 3 records.
 
 select p.ProductName, o.Quantity
-from OrderDetail as o
-join Product as p on o.ProductId = p.Id
+from [OrderDetail] as o
+join [Product] as p on o.ProductId = p.Id
 where o.OrderId = 10251
 order by p.ProductName;
 
@@ -33,5 +29,5 @@ order by p.ProductName;
 
 select o.id as OrderId, c.CompanyName as CustomerCompanyName, e.LastName as EmployeeLastName
 from [Order] as o
-join Customer as c on o.CustomerId = c.Id
-join Employee as e on o.EmployeeId = e.Id; 
+join [Customer] as c on o.CustomerId = c.Id
+join [Employee] as e on o.EmployeeId = e.Id; 
